@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">CookBook_App</string>
+    <string name="main_label">PRZEPISOWO</string>
+    <string name="meaning">Serwis z pysznymi przepisami</string>
+    <string name="go_cooking">Przejdź do gotowania</string>
+    <string name="desery">Desery</string>
+    <string name="zupy">Zupy</string>
+    <string name="main_course">Dania Główne</string>
+    <string name="przekaski">Przekąski</string>
+</resources>
