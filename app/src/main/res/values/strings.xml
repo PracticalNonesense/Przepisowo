@@ -7,4 +7,7 @@
     <string name="zupy">Zupy</string>
     <string name="main_course">Dania Główne</string>
     <string name="przekaski">Przekąski</string>
+    <string name="napoje">Napoje</string>
+    <string name="dania_wegańskie">Dania wegańskie</string>
+    <string name="search">Wpisz nazwę dania</string>
 </resources>

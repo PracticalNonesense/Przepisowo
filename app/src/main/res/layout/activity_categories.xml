@@ -5,78 +5,149 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
     tools:context=".Categories">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/main_label"
-        android:textColor="@color/def_font"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        android:shadowColor="#000000"
-        android:shadowDx="1.5"
-        android:shadowDy="1.5"
-        android:shadowRadius="1.6"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        />
-
+    <!-- Czarny nagłówek z nazwą strony -->
     <LinearLayout
-        android:id="@+id/category_bar"
+        android:id="@+id/header_section"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:background="@color/black"
-        android:paddingVertical="8dp"
-        app:layout_constraintTop_toBottomOf="@id/textView"
+        android:padding="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Nazwa strony -->
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_label"
+            android:textColor="@color/def_font"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:shadowColor="#000000"
+            android:shadowDx="1.5"
+            android:shadowDy="1.5"
+            android:shadowRadius="1.6"
+            android:layout_gravity="center_horizontal"
+            android:onClick="goToMainActivity"
+            />
+
+        <!-- Pasek wyszukiwania -->
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:queryHint="@string/search"
+            android:textColor="@color/black"
+            android:iconifiedByDefault="false"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_marginTop="16dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/textView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </LinearLayout>
+
+    <!-- Placeholder na główną treść -->
+    <FrameLayout
+        android:id="@+id/content_placeholder"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:background="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@id/header_section"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:gravity="center_vertical"
-        android:layout_marginTop="16dp">
-        <Button
-            android:id="@+id/button_category1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/desery"
-            android:textColor="@color/def_font"
-            android:backgroundTint="@android:color/transparent"
-            android:textStyle="bold"
-            android:padding="8dp" />
-        <Button
-            android:id="@+id/button_category2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/zupy"
-            android:textColor="@color/def_font"
-            android:backgroundTint="@android:color/transparent"
-            android:textStyle="bold"
-            android:padding="8dp" />
-        <Button
-            android:id="@+id/button_category3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/main_course"
-            android:textColor="@color/def_font"
-            android:backgroundTint="@android:color/transparent"
-            android:textStyle="bold"
-            android:padding="8dp" />
-        <Button
-            android:id="@+id/button_category4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/przekaski"
-            android:textColor="@color/def_font"
-            android:backgroundTint="@android:color/transparent"
-            android:textStyle="bold"
-            android:padding="8dp" />
+        android:layout_margin="16dp" />
 
-    </LinearLayout>
+
+    <!-- Pasek kategorii na dole -->
+    <HorizontalScrollView
+        android:id="@+id/category_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/black">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <Button
+                android:id="@+id/button_category1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/desery"
+                android:textColor="@color/def_font"
+                android:backgroundTint="@android:color/transparent"
+                android:textStyle="bold"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp" />
+
+            <Button
+                android:id="@+id/button_category2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/zupy"
+                android:textColor="@color/def_font"
+                android:backgroundTint="@android:color/transparent"
+                android:textStyle="bold"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp" />
+
+            <Button
+                android:id="@+id/button_category3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/main_course"
+                android:textColor="@color/def_font"
+                android:backgroundTint="@android:color/transparent"
+                android:textStyle="bold"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp" />
+
+            <Button
+                android:id="@+id/button_category4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/przekaski"
+                android:textColor="@color/def_font"
+                android:backgroundTint="@android:color/transparent"
+                android:textStyle="bold"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp" />
+
+            <Button
+                android:id="@+id/button_category5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/napoje"
+                android:textColor="@color/def_font"
+                android:backgroundTint="@android:color/transparent"
+                android:textStyle="bold"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp" />
+
+            <Button
+                android:id="@+id/button_category6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dania_wegańskie"
+                android:textColor="@color/def_font"
+                android:backgroundTint="@android:color/transparent"
+                android:textStyle="bold"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp" />
+        </LinearLayout>
+    </HorizontalScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
