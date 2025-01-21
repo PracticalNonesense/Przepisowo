@@ -10,4 +10,6 @@
     <string name="napoje">Napoje</string>
     <string name="dania_wegańskie">Dania wegańskie</string>
     <string name="search">Wpisz nazwę dania</string>
+    <string name="pizza">Pizza Neapolitanska</string>
+    <string name="ramen">Ramen z wołowiną</string>
 </resources>

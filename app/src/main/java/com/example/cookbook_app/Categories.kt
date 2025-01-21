@@ -1,20 +1,30 @@
 package com.example.cookbook_app
-
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
 
 class Categories : AppCompatActivity() {
+
+    private lateinit var recipeViewModel: RecipeViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_categories)
+
+        // Inicjalizacja bazy danych i ViewModel
+        val database = AppDatabase.getDatabase(this) // Poprawiona inicjalizacja bazy danych
+        val recipeDao = database.recipeDao()
+        val viewModelFactory = RecipeViewModelFactory(recipeDao)
+        recipeViewModel = ViewModelProvider(this, viewModelFactory).get(RecipeViewModel::class.java)
+
+        // Wstawienie przykładowego przepisu
+        recipeViewModel.insertSampleRecipe()
 
         // Obsługa dopasowania układu do systemowych pasków (Edge-to-Edge)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -25,24 +35,10 @@ class Categories : AppCompatActivity() {
 
         val searchView = findViewById<SearchView>(R.id.search_view)
 
-// Ustawienie tekstu pomocniczego (hint)
+        // Ustawienie tekstu pomocniczego (hint)
         searchView.queryHint = "Wyszukaj przepis"
 
-// Ustawienie koloru tekstu pomocniczego (hint)
-        searchView.setQueryHint("Wyszukaj przepis")
-
-// Ustaw listener na kliknięcie na cały SearchView
-        searchView.setOnClickListener {
-            if (!searchView.isIconified) {
-                // Jeśli SearchView jest już otwarte (rozwinęte), wykonaj wyszukiwanie
-                searchView.setIconified(false)
-            } else {
-                // Jeśli SearchView jest skompresowane, to go rozwijamy
-                searchView.setIconified(true)
-            }
-        }
-
-// Listener na zmiany tekstu w wyszukiwarce
+        // Listener na zmiany tekstu w wyszukiwarce
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 // Obsługuje wyszukiwanie po wciśnięciu klawisza "enter"
@@ -62,3 +58,4 @@ class Categories : AppCompatActivity() {
         }
     }
 }
+

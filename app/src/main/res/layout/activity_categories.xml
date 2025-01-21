@@ -34,8 +34,7 @@
             android:shadowDy="1.5"
             android:shadowRadius="1.6"
             android:layout_gravity="center_horizontal"
-            android:onClick="goToMainActivity"
-            />
+            android:onClick="goToMainActivity" />
 
         <!-- Pasek wyszukiwania -->
         <androidx.appcompat.widget.SearchView
@@ -48,25 +47,57 @@
             android:focusable="true"
             android:clickable="true"
             android:layout_marginTop="16dp"
-            android:background="@color/white"
-            app:layout_constraintTop_toBottomOf="@id/textView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:background="@color/white" />
     </LinearLayout>
 
-    <!-- Placeholder na główną treść -->
-    <FrameLayout
-        android:id="@+id/content_placeholder"
+    <ScrollView
+        android:id="@+id/scroll_view"
         android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:background="@android:color/white"
+        android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/header_section"
+        app:layout_constraintBottom_toTopOf="@id/category_scroll"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp" />
+        app:layout_constraintEnd_toEndOf="parent">
 
+        <LinearLayout
+            android:id="@+id/placeholder_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
 
-    <!-- Pasek kategorii na dole -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginBottom="45dp"
+                android:background="@android:color/white" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginBottom="45dp"
+                android:background="@android:color/white" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginBottom="45dp"
+                android:background="@android:color/white" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginBottom="45dp"
+                android:background="@android:color/white" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginBottom="45dp"
+                android:background="@android:color/white" />
+        </LinearLayout>
+    </ScrollView>
+
     <HorizontalScrollView
         android:id="@+id/category_scroll"
         android:layout_width="match_parent"
@@ -148,6 +179,9 @@
                 android:textStyle="bold"
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="8dp" />
+
+            <!-- Dodaj inne przyciski tutaj -->
+
         </LinearLayout>
     </HorizontalScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
