@@ -59,45 +59,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/placeholder_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="8dp">
+            android:layout_height="match_parent" />
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginBottom="45dp"
-                android:background="@android:color/white" />
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginBottom="45dp"
-                android:background="@android:color/white" />
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginBottom="45dp"
-                android:background="@android:color/white" />
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginBottom="45dp"
-                android:background="@android:color/white" />
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginBottom="45dp"
-                android:background="@android:color/white" />
-        </LinearLayout>
     </ScrollView>
-
     <HorizontalScrollView
         android:id="@+id/category_scroll"
         android:layout_width="match_parent"

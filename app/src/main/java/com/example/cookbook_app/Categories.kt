@@ -1,4 +1,5 @@
 package com.example.cookbook_app
+
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -7,10 +8,14 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class Categories : AppCompatActivity() {
 
     private lateinit var recipeViewModel: RecipeViewModel
+    private lateinit var recipeAdapter: RecipeAdapter
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,12 +38,10 @@ class Categories : AppCompatActivity() {
             insets
         }
 
+        // Wyszukiwanie przepisów
         val searchView = findViewById<SearchView>(R.id.search_view)
-
-        // Ustawienie tekstu pomocniczego (hint)
         searchView.queryHint = "Wyszukaj przepis"
 
-        // Listener na zmiany tekstu w wyszukiwarce
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 // Obsługuje wyszukiwanie po wciśnięciu klawisza "enter"
@@ -51,11 +54,25 @@ class Categories : AppCompatActivity() {
             }
         })
 
-        fun goToMainActivity(view: android.view.View) {
-            // Przechodzenie do MainActivity
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
+        // RecyclerView
+        recyclerView = findViewById(R.id.placeholder_list)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+// Inicjalizacja adaptera z kontekstem i pustą listą
+        recipeAdapter = RecipeAdapter(this, emptyList()) // Przekazanie kontekstu oraz pustej listy
+        recyclerView.adapter = recipeAdapter
+
+// Obserwacja na zmiany w bazie danych
+        recipeViewModel.allRecipes.observe(this, { recipes ->
+            recipeAdapter = RecipeAdapter(this, recipes) // Przekazanie kontekstu oraz listy przepisów
+            recyclerView.adapter = recipeAdapter
+        })
+
+    }
+
+    // Funkcja do przejścia do MainActivity
+    fun goToMainActivity(view: android.view.View) {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 }
-

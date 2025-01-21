@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:elevation="2dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Obrazek przepisu -->
+        <ImageView
+            android:id="@+id/recipe_image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/pizza_nea" />
+
+        <!-- Nazwa przepisu -->
+        <TextView
+            android:id="@+id/recipe_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pizza"
+            android:textSize="18sp"
+            android:paddingTop="8dp" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
