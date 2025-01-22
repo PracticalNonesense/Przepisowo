@@ -29,7 +29,7 @@ class Categories : AppCompatActivity() {
         recipeViewModel = ViewModelProvider(this, viewModelFactory).get(RecipeViewModel::class.java)
 
         // Wstawienie przykładowego przepisu
-        recipeViewModel.insertSampleRecipe()
+        recipeViewModel.insertSampleRecipes()
 
         // Obsługa dopasowania układu do systemowych pasków (Edge-to-Edge)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -54,6 +54,7 @@ class Categories : AppCompatActivity() {
             }
         })
 
+        recipeViewModel.insertSampleRecipes()
         // RecyclerView
         recyclerView = findViewById(R.id.placeholder_list)
         recyclerView.layoutManager = LinearLayoutManager(this)

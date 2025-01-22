@@ -1,16 +1,20 @@
-    package com.example.cookbook_app
+package com.example.cookbook_app
 
-    import androidx.lifecycle.LiveData
-    import androidx.room.*
+import androidx.lifecycle.LiveData
+import androidx.room.*
 
-    @Dao
-    interface RecipeDao {
-        @Insert(onConflict = OnConflictStrategy.REPLACE)
-        suspend fun insertRecipe(recipe: RecipeEntity)
+@Dao
+interface RecipeDao {
+    // Zmieniamy metodę tak, aby przyjmowała listę przepisów
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertRecipes(recipes: List<RecipeEntity>)
 
-        @Query("SELECT * FROM recipes")
-        fun getAllRecipesLive(): LiveData<List<RecipeEntity>>
+    @Query("SELECT * FROM recipes")
+    fun getAllRecipesLive(): LiveData<List<RecipeEntity>>
 
-        @Delete
-        suspend fun deleteRecipe(recipe: RecipeEntity)
-    }
+    @Delete
+    suspend fun deleteRecipe(recipe: RecipeEntity)
+
+    @Query("SELECT COUNT(*) FROM recipes")
+    fun getRecipeCount(): Int
+}
