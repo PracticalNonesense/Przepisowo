@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "recipes")
 data class RecipeEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Int = 0, // Unikalny identyfikator
+    val id: Int, // Unikalny identyfikator
     val name: String, // Nazwa przepisu
     val description: String, // Opis przepisu
     val ingredients: String, // Składniki w formacie tekstowym

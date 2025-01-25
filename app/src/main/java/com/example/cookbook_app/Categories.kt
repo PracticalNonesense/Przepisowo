@@ -23,51 +23,50 @@ class Categories : AppCompatActivity() {
         setContentView(R.layout.activity_categories)
 
         // Inicjalizacja bazy danych i ViewModel
-        val database = AppDatabase.getDatabase(this) // Poprawiona inicjalizacja bazy danych
+        val database = AppDatabase.getDatabase(this)
         val recipeDao = database.recipeDao()
         val viewModelFactory = RecipeViewModelFactory(recipeDao)
         recipeViewModel = ViewModelProvider(this, viewModelFactory).get(RecipeViewModel::class.java)
 
-        // Wstawienie przykładowego przepisu
+        // Wstawienie przykładowych przepisów
         recipeViewModel.insertSampleRecipes()
 
-        // Obsługa dopasowania układu do systemowych pasków (Edge-to-Edge)
+        // Obsługa układu Edge-to-Edge
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        // Wyszukiwanie przepisów
+        // Wyszukiwanie
         val searchView = findViewById<SearchView>(R.id.search_view)
         searchView.queryHint = "Wyszukaj przepis"
-
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                // Obsługuje wyszukiwanie po wciśnięciu klawisza "enter"
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                // Obsługuje zmiany w treści wyszukiwania
                 return false
             }
         })
 
-        recipeViewModel.insertSampleRecipes()
-        // RecyclerView
+        // RecyclerView i Adapter
         recyclerView = findViewById(R.id.placeholder_list)
         recyclerView.layoutManager = LinearLayoutManager(this)
-
-// Inicjalizacja adaptera z kontekstem i pustą listą
-        recipeAdapter = RecipeAdapter(this, emptyList()) // Przekazanie kontekstu oraz pustej listy
+        recipeAdapter = RecipeAdapter(this) // Teraz konstruktor wymaga tylko kontekstu
         recyclerView.adapter = recipeAdapter
 
-// Obserwacja na zmiany w bazie danych
-        recipeViewModel.allRecipes.observe(this, { recipes ->
-            recipeAdapter = RecipeAdapter(this, recipes) // Przekazanie kontekstu oraz listy przepisów
-            recyclerView.adapter = recipeAdapter
-        })
+        // Obserwacja danych
+        recipeViewModel.allRecipes.observe(this) { recipes ->
+            if (recipes.isNotEmpty()) {
+                println("Loaded ${recipes.size} recipes from the database.")
+                recipes.forEach { println("Recipe: ${it.name}, Ingredients: ${it.ingredients}") }
+            } else {
+                println("No recipes found in the database.")
+            }
+        }
+
 
     }
 
@@ -77,3 +76,4 @@ class Categories : AppCompatActivity() {
         startActivity(intent)
     }
 }
+

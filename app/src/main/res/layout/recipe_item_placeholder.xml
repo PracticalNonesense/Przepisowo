@@ -1,35 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:elevation="2dp">
+    android:orientation="vertical"
+    android:padding="16dp">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:padding="16dp"
+    <!-- Obraz przepisu -->
+    <ImageView
+        android:id="@+id/image"
         android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/recipe_image" />
+
+    <!-- Placeholder na nazwę przepisu -->
+    <TextView
+        android:id="@+id/recipe_name"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/gradient_background">
+        android:layout_marginTop="8dp"
+        android:text="Placeholder na nazwę przepisu"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
-        <!-- Obrazek przepisu -->
-        <ImageView
-            android:id="@+id/recipe_image"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:src="@drawable/pizza_nea" />
+    <!-- Placeholder na składniki -->
+    <TextView
+        android:id="@+id/recipe_ingredients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Placeholder na składniki"
+        android:textSize="16sp" />
 
-        <!-- Nazwa przepisu -->
-        <TextView
-            android:id="@+id/recipe_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/pizza"
-            android:textSize="18sp"
-            android:paddingTop="8dp"
-            android:textColor="@color/white"
-            android:gravity="center_horizontal" />
-
-    </LinearLayout>
-
-</androidx.cardview.widget.CardView>
+</LinearLayout>
