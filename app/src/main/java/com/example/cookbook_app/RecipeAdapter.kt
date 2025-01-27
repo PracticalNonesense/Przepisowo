@@ -17,22 +17,22 @@ class RecipeAdapter(private val context: Context) :
         "Pizza neapolitańska",
         "Lasagna",
         "Spaghetti Carbonara",
-        "Placeholder Przepis 1",
-        "Placeholder Przepis 2",
-        "Placeholder Przepis 3",
-        "Placeholder Przepis 4",
-        "Placeholder Przepis 5"
+        "Sernik z budyniem",
+        "Zupa ogórkowa na wędzonce",
+        "Koreczki z fetą",
+        "Wegańskie burgery",
+        "Złota lemoniada herbaciana"
     )
 
     private val recipeIngredients = listOf(
         "mąka włoska, woda, drożdże, sól, oliwa, pomidory, mozzarella", // Pizza
         "makaron lasagna, mięso mielone, sos pomidorowy, ser",          // Lasagna
         "makaron spaghetti, jajka, pancetta, pecorino romano, sól, pieprz", // Carbonara
-        "Placeholder składniki 1",
-        "Placeholder składniki 2",
-        "Placeholder składniki 3",
-        "Placeholder składniki 4",
-        "Placeholder składniki 5"
+        "ser twarogowy 1 kilogram, budyń waniliowy 3 łyżki, cukier 180 gramów, jajka 3 sztuki, śmietanka 30% 100 gramów.",
+        "kiszone ogórki 300 gramów, wędzonka lub kości wędzone 200 gramów, marchewka 1 sztuka, ziemniaki 5 sztuk, koperek 1 pęczek, liść laurowy 2 sztuki, ziele angielskie 2 ziarna, woda 2 litry",
+        "ser feta 2 opakowania, oliwki 1 słoik, ogórki 1 sztuka, salami 1 opakowanie, pomidorki koktajlowe 200 gramów, winogrona 200 gramów",
+        "ryż 125 gramów, czarna fasola 125 gramów, cebula 100 gramów, kmin rzymski 1 sztuka, papryka słodka 1 łyżka, papryka ostra w proszku mielona 1 łyżeczka, orzechy włoskie 125 gramów, panierka panko 25 gramów",
+        "Herbata Lipton Yellow Label Tea 1 sztuka, cytryna 2 plastry, brzoskwinia 0.5 sztuki, cukier 3 łyżeczki, gałązka mięty 1 sztukax1"
     )
 
     private val recipeInstructions = listOf(
@@ -50,11 +50,11 @@ class RecipeAdapter(private val context: Context) :
         "pizza_nea",   // Obraz dla pizzy
         "lasagna",     // Obraz dla lasagny
         "carbonara",   // Obraz dla carbonary
-        "placeholder_image", // Placeholder 1
-        "placeholder_image", // Placeholder 2
-        "placeholder_image", // Placeholder 3
-        "placeholder_image", // Placeholder 4
-        "placeholder_image"  // Placeholder 5
+        "sernik", // Placeholder 1
+        "ogor", // Placeholder 2
+        "koreczki", // Placeholder 3
+        "burger", // Placeholder 4
+        "lemoniada"  // Placeholder 5
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {

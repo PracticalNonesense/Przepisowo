@@ -14,21 +14,24 @@
         android:contentDescription="@string/recipe_image" />
 
     <!-- Placeholder na nazwę przepisu -->
+
     <TextView
         android:id="@+id/recipe_name"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:gravity="center"
         android:text="Placeholder na nazwę przepisu"
         android:textSize="18sp"
         android:textStyle="bold" />
 
-    <!-- Placeholder na składniki -->
+    <!-- Sekcja składników -->
     <TextView
         android:id="@+id/recipe_ingredients"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
         android:text="Placeholder na składniki"
         android:textSize="16sp" />
 
