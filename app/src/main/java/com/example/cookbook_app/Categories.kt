@@ -128,6 +128,11 @@ class Categories : AppCompatActivity() {
         }
     }
 
+    fun goToMainActivity(view: android.view.View) {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish() // Opcjonalnie zamyka obecną aktywność, by użytkownik nie wracał do niej przyciskiem "Wstecz"
+    }
     // Obsługa wyniku działania aparatu
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

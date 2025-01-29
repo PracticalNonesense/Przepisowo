@@ -10,5 +10,6 @@ data class RecipeEntity(
     val description: String, // Opis przepisu
     val ingredients: String, // Składniki w formacie tekstowym
     val instructions: String, // Instrukcje przygotowania
-    val image: String // URI obrazu (opcjonalne)
+    val image: String, // URI obrazu (opcjonalne)
+    val type: String
 )

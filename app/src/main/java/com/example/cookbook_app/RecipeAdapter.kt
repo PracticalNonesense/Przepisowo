@@ -32,7 +32,7 @@ class RecipeAdapter(private val context: Context) :
         "kiszone ogórki 300 gramów, wędzonka lub kości wędzone 200 gramów, marchewka 1 sztuka, ziemniaki 5 sztuk, koperek 1 pęczek, liść laurowy 2 sztuki, ziele angielskie 2 ziarna, woda 2 litry",
         "ser feta 2 opakowania, oliwki 1 słoik, ogórki 1 sztuka, salami 1 opakowanie, pomidorki koktajlowe 200 gramów, winogrona 200 gramów",
         "ryż 125 gramów, czarna fasola 125 gramów, cebula 100 gramów, kmin rzymski 1 sztuka, papryka słodka 1 łyżka, papryka ostra w proszku mielona 1 łyżeczka, orzechy włoskie 125 gramów, panierka panko 25 gramów",
-        "Herbata Lipton Yellow Label Tea 1 sztuka, cytryna 2 plastry, brzoskwinia 0.5 sztuki, cukier 3 łyżeczki, gałązka mięty 1 sztukax1"
+        "Herbata Lipton Yellow Label Tea 1 sztuka, cytryna 2 plastry, brzoskwinia 0.5 sztuki, cukier 3 łyżeczki, gałązka mięty 1 sztuka"
     )
 
     private val recipeInstructions = listOf(
