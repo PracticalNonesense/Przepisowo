@@ -5,7 +5,6 @@ import androidx.room.*
 
 @Dao
 interface RecipeDao {
-    // Zmieniamy metodę tak, aby przyjmowała listę przepisów
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertRecipes(recipes: List<RecipeEntity>)
 

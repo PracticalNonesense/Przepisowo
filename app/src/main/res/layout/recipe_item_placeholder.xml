@@ -4,16 +4,12 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="16dp">
-
-    <!-- Obraz przepisu -->
     <ImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:scaleType="centerCrop"
         android:contentDescription="@string/recipe_image" />
-
-    <!-- Placeholder na nazwę przepisu -->
 
     <TextView
         android:id="@+id/recipe_name"
@@ -26,7 +22,6 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
-    <!-- Sekcja składników -->
     <TextView
         android:id="@+id/recipe_ingredients"
         android:layout_width="wrap_content"

@@ -28,19 +28,15 @@ class Categories : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_categories)
 
-        // Inicjalizacja RecyclerView i Adaptera
         recyclerView = findViewById(R.id.placeholder_list)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recipeAdapter = RecipeAdapter(this)
         recyclerView.adapter = recipeAdapter
 
-        // Filtracja początkowa - pokazuje wszystkie przepisy
         recipeAdapter.filterByCategory("")
 
-        // Obsługa przycisków kategorii
         setupCategoryButtons()
 
-        // Obsługa wyszukiwarki
         val searchView = findViewById<SearchView>(R.id.search_view)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -53,7 +49,6 @@ class Categories : AppCompatActivity() {
             }
         })
 
-        // Obsługa kliknięcia na ikonkę kamery
         val cameraIcon = findViewById<ImageView>(R.id.camera_icon)
         cameraIcon.setOnClickListener {
             if (checkAndRequestPermissions()) {
@@ -63,9 +58,8 @@ class Categories : AppCompatActivity() {
     }
 
     private fun setupCategoryButtons() {
-        // Przyciski kategorii
         findViewById<Button>(R.id.button_category1).setOnClickListener {
-            recipeAdapter.filterByCategory("desery") // Przypisz odpowiednią kategorię
+            recipeAdapter.filterByCategory("desery")
         }
         findViewById<Button>(R.id.button_category2).setOnClickListener {
             recipeAdapter.filterByCategory("zupy")
@@ -84,7 +78,6 @@ class Categories : AppCompatActivity() {
         }
     }
 
-    // Sprawdzanie i żądanie uprawnień do kamery
     private fun checkAndRequestPermissions(): Boolean {
         return if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
             ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -100,7 +93,6 @@ class Categories : AppCompatActivity() {
         }
     }
 
-    // Uruchamianie aparatu
     private fun openCamera() {
         val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         if (cameraIntent.resolveActivity(packageManager) != null) {
@@ -110,7 +102,6 @@ class Categories : AppCompatActivity() {
         }
     }
 
-    // Obsługa wyników żądania uprawnień
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -131,9 +122,8 @@ class Categories : AppCompatActivity() {
     fun goToMainActivity(view: android.view.View) {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
-        finish() // Opcjonalnie zamyka obecną aktywność, by użytkownik nie wracał do niej przyciskiem "Wstecz"
+        finish()
     }
-    // Obsługa wyniku działania aparatu
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 

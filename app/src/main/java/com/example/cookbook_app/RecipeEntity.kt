@@ -5,11 +5,11 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "recipes")
 data class RecipeEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Int, // Unikalny identyfikator
-    val name: String, // Nazwa przepisu
-    val description: String, // Opis przepisu
-    val ingredients: String, // Składniki w formacie tekstowym
-    val instructions: String, // Instrukcje przygotowania
-    val image: String, // URI obrazu (opcjonalne)
+    val id: Int,
+    val name: String,
+    val description: String,
+    val ingredients: String,
+    val instructions: String,
+    val image: String,
     val type: String
 )

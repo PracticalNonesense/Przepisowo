@@ -8,7 +8,6 @@
     android:background="@drawable/gradient_background"
     tools:context=".Categories">
 
-    <!-- Czarny nagłówek z nazwą strony -->
     <LinearLayout
         android:id="@+id/header_section"
         android:layout_width="match_parent"

@@ -19,7 +19,7 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "cookbook_database"
-                ).fallbackToDestructiveMigration() // Dodano
+                ).fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
                 instance
