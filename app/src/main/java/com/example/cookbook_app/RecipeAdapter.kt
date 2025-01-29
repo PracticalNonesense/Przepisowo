@@ -45,6 +45,16 @@ class RecipeAdapter(private val context: Context) :
         "Placeholder instrukcje 4",
         "Placeholder instrukcje 5"
     )
+    private val recipeCategories = listOf(
+        "dania główne",    // Pizza
+        "dania główne",    // Lasagna
+        "dania główne",    // Spaghetti Carbonara
+        "desery",          // Sernik z budyniem
+        "zupy",            // Zupa ogórkowa
+        "przekąski",       // Koreczki z fetą
+        "dania wegańskie", // Wegańskie burgery
+        "napoje"           // Złota lemoniada herbaciana
+    )
 
     private val imageNames = listOf(
         "pizza_nea",   // Obraz dla pizzy
@@ -57,32 +67,60 @@ class RecipeAdapter(private val context: Context) :
         "lemoniada"  // Placeholder 5
     )
 
+    private var filteredRecipeNames = recipeNames.toMutableList()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.recipe_item_placeholder, parent, false)
         return RecipeViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
-        // Ustawienie danych dla pozycji w RecyclerView
-        holder.recipeName?.text = recipeNames[position]
-        holder.recipeIngredients?.text = recipeIngredients[position]
+        // Ustaw dane dla pozycji w RecyclerView
+        holder.recipeName?.text = filteredRecipeNames[position]
+        holder.recipeIngredients?.text = recipeIngredients[recipeNames.indexOf(filteredRecipeNames[position])]
 
-        // Obsługa obrazu
-        val imageName = imageNames[position]
+        val imageName = imageNames[recipeNames.indexOf(filteredRecipeNames[position])]
         val imageResId = context.resources.getIdentifier(imageName, "drawable", context.packageName)
 
         holder.recipeImage?.let { imageView ->
             if (imageResId != 0) {
+                // Załaduj obraz za pomocą Glide
                 Glide.with(context)
                     .load(imageResId)
+                    .placeholder(R.drawable.placeholder_image) // Placeholder, jeśli obraz jest ładowany
+                    .error(R.drawable.placeholder_image)       // Placeholder, jeśli obraz nie zostanie znaleziony
                     .into(imageView)
             } else {
+                // Jeśli obraz nie istnieje w zasobach, ustaw obraz zastępczy
                 imageView.setImageResource(R.drawable.placeholder_image)
             }
         }
     }
 
-    override fun getItemCount(): Int = recipeNames.size // Zwraca liczbę przepisów
+    override fun getItemCount(): Int = filteredRecipeNames.size
+
+    fun filterByCategory(category: String) {
+        filteredRecipeNames = if (category.isEmpty()) {
+            recipeNames.toMutableList() // Pokazuj wszystkie przepisy, jeśli brak kategorii
+        } else {
+            // Filtruj przepisy według kategorii
+            recipeNames.filterIndexed { index, _ ->
+                recipeCategories[index].equals(category, ignoreCase = true)
+            }.toMutableList()
+        }
+        println("Filtered recipes: $filteredRecipeNames") // Loguj wyniki
+        notifyDataSetChanged() // Odśwież listę
+    }
+
+
+    fun filter(query: String) {
+        filteredRecipeNames = if (query.isEmpty()) {
+            recipeNames.toMutableList()
+        } else {
+            recipeNames.filter { it.contains(query, ignoreCase = true) }.toMutableList()
+        }
+        notifyDataSetChanged()
+    }
 
     inner class RecipeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val recipeImage: ImageView? = itemView.findViewById(R.id.image)

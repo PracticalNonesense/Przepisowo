@@ -13,4 +13,5 @@
     <string name="pizza">Pizza Neapolitanska</string>
     <string name="ramen">Ramen z wołowiną</string>
     <string name="recipe_image">pizza_nea</string>
+    <string name="camera_icon">Ikona kamery</string>
 </resources>
